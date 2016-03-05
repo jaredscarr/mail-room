@@ -6,13 +6,14 @@ import pdb
 
 MENU_DICT = {
 
-    "main_menu_prompt": """Please select from the following menu options:\nS) Send Thank You
-                C) Create Report\nQ) Quit""",
-    "donation_prompt": "Donation amount? ",
-    "name_prompt": "Type 'L' for a list of names or enter a name: ",
+    "main_menu_prompt": """Please select from the following menu options:\n
+S) Send Thank You\nC) Create Report\n""",
+    "donation_prompt": "Enter 'Q' for menu or enter donation amount: ",
+    "name_prompt": "L) List of Names\nQ) Quit\nOr enter a name: ",
 }
 
 NAMES = {
+    # TODO: Remove the test values below
     'jared': [323, 333, 3236],
     'alex': [45, 3345, 343, 234],
     'larry': [5, 5, 5, 5, 5, 5, 5],
@@ -26,7 +27,7 @@ def call_all():
 
 def validate_main_menu(string):
     """Validate user input."""
-    if string in ['C', 'S', 'Q']:
+    if string in ['C', 'S']:
         return string
     else:
         return False
@@ -72,6 +73,8 @@ def get_name():
         if check_name == 'L':
             for keys in NAMES:
                 print(keys)
+        elif check_name == 'Q':
+            menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
         elif check_name is False:
             continue
         else:
@@ -84,6 +87,8 @@ def get_donation(name):
     """Get donation amount."""
     while True:
         amount = input(MENU_DICT["donation_prompt"])
+        if amount == 'Q':
+            menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
         check_num = validate_donation(amount)
         if check_num is False:
             continue
@@ -115,9 +120,7 @@ def create_report():
 
 def router(user_input):
     """Return function call to a menu."""
-    if user_input == 'Q':
-        menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
-    elif user_input == 'S':
+    if user_input == 'S':
         get_name()
     elif user_input == 'C':
         create_report()
