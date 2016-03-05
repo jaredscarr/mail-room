@@ -111,10 +111,21 @@ def print_email(name, donation):
     return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
 
+def report_math(key, donations):
+    """Calculate total, number and avg. donations of each user in NAMES."""
+    number_of = 0
+    avg = 0
+    total = sum(donations)
+    number_of = len(donations)
+    avg = int(total / number_of)
+    print("Name    Total    Quantity    Avg")
+    print("{}    {}    {}    {}".format(key, total, number_of, avg))
+
+
 def create_report():
     """Print a report and return to main_menu."""
     for key, value in NAMES.items():
-        print (key, value)
+        report_math(key, value)
     return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
 
