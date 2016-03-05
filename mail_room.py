@@ -48,7 +48,6 @@ def validate_name(name):
 
 def validate_donation(dollars):
     """Check if input is type(float)."""
-    pdb.set_trace()
     # twoplaces = Decimal(10) ** -2
     try:
         int(dollars)
@@ -96,7 +95,7 @@ def get_donation(name):
 # This is our best function
 def append_to_dict(name, donation):
     """Check if name is in NAMES. If not append with donation."""
-    NAMES.setdefault(name, []).append(donation)
+    NAMES.setdefault(name, []).append(int(donation))
     return print_email(name, donation)
 
 
