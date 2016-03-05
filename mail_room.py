@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
+# from decimal import Decimal
 from builtins import input
 import pdb
 
@@ -48,12 +48,14 @@ def validate_name(name):
 
 def validate_donation(dollars):
     """Check if input is type(float)."""
-    twoplaces = Decimal(10) ** -2
+    pdb.set_trace()
+    # twoplaces = Decimal(10) ** -2
     try:
-        # int(dollars)
+        int(dollars)
         # if isinstance(dollars, float) or isinstance(dollars, int):
-        float(Decimal(dollars).quantize(twoplaces))
-        return dollars
+        # float(Decimal(dollars).quantize(twoplaces))
+        if isinstance(dollars, int):
+            return dollars
     except ValueError:
         return False
 
@@ -107,7 +109,8 @@ def print_email(name, donation):
 
 def create_report():
     """Print a report and return to main_menu."""
-    print(NAMES)
+    for key, value in NAMES.items():
+        print (key, value)
     return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
 
