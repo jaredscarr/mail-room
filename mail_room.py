@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from builtins import input
+import pdb
 
 
 MENU_DICT = {
@@ -27,10 +29,16 @@ def validate_main_menu(string):
 
 def validate_name(name):
     """Check if input is type(str)."""
-    if isinstance(name, str):
-        return name
-    else:
+    try:
+        int(name)
         return False
+    except ValueError:
+        return name
+
+    # if isinstance(name, str):
+    #     return name
+    # else:
+    #     return False
 
 
 def validate_donation(dollars):
