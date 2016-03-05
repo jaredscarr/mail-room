@@ -6,10 +6,10 @@ import pdb
 
 MENU_DICT = {
 
-    "main_menu_prompt": """Please select from the following menu options:\n
+    "main_menu_prompt": """\nPlease select from the following menu options:\n
 S) Send Thank You\nC) Create Report\n""",
-    "donation_prompt": "Enter 'Q' for menu or enter donation amount: ",
-    "name_prompt": "L) List of Names\nQ) Quit\nOr enter a name: ",
+    "donation_prompt": "\nEnter 'Q' for menu or enter donation amount: ",
+    "name_prompt": "\nL) List of Names\nQ) Quit\nOr enter a name: ",
 }
 
 NAMES = {
@@ -71,6 +71,7 @@ def get_name():
         name = input(MENU_DICT["name_prompt"])
         check_name = validate_name(name)
         if check_name == 'L':
+            print("\nDonors\n")
             for keys in NAMES:
                 print(keys)
         elif check_name == 'Q':
@@ -106,7 +107,7 @@ def append_to_dict(name, donation):
 
 def print_email(name, donation):
     """Print email to the console."""
-    print("Thank you {} for your generous donation of: ${}"
+    print("\nThank you {} for your generous donation of: ${}\n"
           .format(name, donation))
     return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
@@ -118,12 +119,13 @@ def report_math(key, donations):
     total = sum(donations)
     number_of = len(donations)
     avg = int(total / number_of)
-    print("Name    Total    Quantity    Avg")
-    print("{}    {}    {}    {}".format(key, total, number_of, avg))
+    print("{:<20}{:<20}{:<20}{:<20}".format(key, total, number_of, avg))
 
 
 def create_report():
     """Print a report and return to main_menu."""
+    print("\n{:<20}{:<20}{:<20}{:<20}\n"
+          .format("Name", "Total", "Quantity", "Avg"))
     for key, value in NAMES.items():
         report_math(key, value)
     return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
