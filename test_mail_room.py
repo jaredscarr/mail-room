@@ -9,20 +9,21 @@ VAL_MAIN = [
     ('Q', 'Q'),
 ]
 
-VAL_NAMES = {
+VAL_NAMES = [
     ('jared', 'jared'),
     ('alex', 'alex'),
     ('fred', 'fred'),
     ('phil', 'phil'),
+    (878, False),
     # ({'jared': [5, 445, 500]}),
     # ({'alex': [1000, 2, 10]}),
-}
+]
 
-VAL_DON = {
-    (333.45, 333.45),
-    (356.4, 356.4),
-    (234.2, 234.2)
-}
+VAL_DON = [
+    ('333.45', '333.45'),
+    # (356.4, 356.4),
+    # (234.2, 234.2),
+]
 
 
 @pytest.mark.parametrize('string, result', VAL_MAIN)
@@ -44,10 +45,3 @@ def test_validate_donation(dollars, result):
     """Test if names is a string."""
     from mail_room import validate_donation
     assert validate_donation(dollars) == result
-
-
-# @pytest.mark.parametrize(' result', SELECTION)
-# def test_main_menu(result):
-#     """Test if main menu function takes you to main."""
-#     from mail_room import main_menu
-#     assert main_menu() == result

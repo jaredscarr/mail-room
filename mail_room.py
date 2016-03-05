@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from decimal import Decimal
 from builtins import input
 import pdb
 
@@ -11,7 +12,11 @@ MENU_DICT = {
     "name_prompt": "Type 'L' for a list of names or enter a name: ",
 }
 
-NAMES = {}
+NAMES = {
+    'jared': [323, 333, 3236],
+    'alex': [45, 3345, 343, 234],
+    'larry': [5, 5, 5, 5, 5, 5, 5],
+}
 
 
 def call_all():
@@ -43,10 +48,19 @@ def validate_name(name):
 
 def validate_donation(dollars):
     """Check if input is type(float)."""
-    if isinstance(dollars, float):
+    twoplaces = Decimal(10) ** -2
+    try:
+        # int(dollars)
+        # if isinstance(dollars, float) or isinstance(dollars, int):
+        float(Decimal(dollars).quantize(twoplaces))
         return dollars
-    else:
+    except ValueError:
         return False
+
+    # if isinstance(dollars, float):
+    #     return dollars
+    # else:
+    #     return False
 
 
 def get_name():
@@ -55,26 +69,40 @@ def get_name():
         name = input(MENU_DICT["name_prompt"])
         check_name = validate_name(name)
         if check_name == 'L':
-            print(NAMES.keys())
+            for keys in NAMES:
+                print(keys)
         elif check_name is False:
             continue
         else:
             break
     print(name)
-    return name
+    return get_donation(name)
 
 
-# def get_donation(name):
-#     """Get donation amount."""
-#     while True:
-#         amount = input(MENU_DICT["donation"])
-#         validate_donation(amount)
+def get_donation(name):
+    """Get donation amount."""
+    while True:
+        amount = input(MENU_DICT["donation_prompt"])
+        check_num = validate_donation(amount)
+        if check_num is False:
+            continue
+        else:
+            break
+    return append_to_dict(name, amount)
 
-#     return
+
+# This is our best function
+def append_to_dict(name, donation):
+    """Check if name is in NAMES. If not append with donation."""
+    NAMES.setdefault(name, []).append(donation)
+    return print_email(name, donation)
 
 
-# def append_to_dict(name, donation):
-#     """Check if name is in NAMES. If not append with donation."""
+def print_email(name, donation):
+    """Print email to the console."""
+    print("Thank you {} for your generous donation of: ${}"
+          .format(name, donation))
+    return menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
 
 def create_report():
