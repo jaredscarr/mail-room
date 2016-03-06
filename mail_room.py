@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# from decimal import Decimal
 from builtins import input
 import pdb
 
@@ -41,28 +40,15 @@ def validate_name(name):
     except ValueError:
         return name
 
-    # if isinstance(name, str):
-    #     return name
-    # else:
-    #     return False
 
-
-def validate_donation(dollars):
-    """Check if input is type(float)."""
-    # twoplaces = Decimal(10) ** -2
+def validate_donation(amount):
+    """Check if input is an instance of an integer."""
     try:
-        int(dollars)
-        # if isinstance(dollars, float) or isinstance(dollars, int):
-        # float(Decimal(dollars).quantize(twoplaces))
-        if isinstance(dollars, int):
-            return dollars
+        int_amount = int(amount)
+        if isinstance(int_amount, int):
+            return int_amount
     except ValueError:
         return False
-
-    # if isinstance(dollars, float):
-    #     return dollars
-    # else:
-    #     return False
 
 
 def get_name():
@@ -90,11 +76,12 @@ def get_donation(name):
         amount = input(MENU_DICT["donation_prompt"])
         if amount == 'Q':
             menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
-        check_num = validate_donation(amount)
-        if check_num is False:
-            continue
         else:
-            break
+            check_num = validate_donation(amount)
+            if check_num is False:
+                continue
+            else:
+                break
     return append_to_dict(name, amount)
 
 
@@ -150,6 +137,3 @@ def menu(prompt, validator):
         else:
             break
     return router(user_input)
-
-
-call_all()

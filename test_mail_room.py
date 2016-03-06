@@ -6,7 +6,6 @@ import pytest
 VAL_MAIN = [
     ('S', 'S'),
     ('C', 'C'),
-    ('Q', 'Q'),
 ]
 
 VAL_NAMES = [
@@ -20,9 +19,9 @@ VAL_NAMES = [
 ]
 
 VAL_DON = [
-    ('333.45', '333.45'),
-    # (356.4, 356.4),
-    # (234.2, 234.2),
+    (333, 333),
+    (356, 356),
+    (234, 234),
 ]
 
 
@@ -40,8 +39,8 @@ def test_validate_name(name, result):
     assert validate_name(name) == result
 
 
-@pytest.mark.parametrize('dollars, result', VAL_DON)
-def test_validate_donation(dollars, result):
-    """Test if names is a string."""
+@pytest.mark.parametrize('amount, result', VAL_DON)
+def test_validate_donation(amount, result):
+    """Test if amount can be an integer."""
     from mail_room import validate_donation
-    assert validate_donation(dollars) == result
+    assert validate_donation(amount) == result
