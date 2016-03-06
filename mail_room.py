@@ -118,7 +118,6 @@ def router(user_input):
         get_name()
     elif user_input == 'C':
         create_report()
-    print('router ran')
 
 
 def menu(prompt, validator):
