@@ -12,4 +12,5 @@ setup(
     # package_dir={'': 'mail-room'},
     install_requires=[],
     extras_require={'test': ['pytest', 'pytest-xdist', 'tox']},
+    entry_points={'console_scripts': ["mail_room = mail_room:main"]}
 )

@@ -44,3 +44,16 @@ def test_validate_donation(amount, result):
     """Test if amount can be an integer."""
     from mail_room import validate_donation
     assert validate_donation(amount) == result
+
+
+# TODO: write tests for the following:
+# test_append_to_dict(name, donation):
+
+# test_print_email(name, donation):
+# these first two can use the same testing MOCK DATA
+
+# test_report_math(key, donations):
+
+# test_create_report():
+
+# 

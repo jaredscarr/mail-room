@@ -19,7 +19,7 @@ NAMES = {
 }
 
 
-def call_all():
+def main():
     """Call functions."""
     menu(MENU_DICT["main_menu_prompt"], validate_main_menu)
 
@@ -85,7 +85,6 @@ def get_donation(name):
     return append_to_dict(name, amount)
 
 
-# This is our best function
 def append_to_dict(name, donation):
     """Check if name is in NAMES. If not append with donation."""
     NAMES.setdefault(name, []).append(int(donation))
