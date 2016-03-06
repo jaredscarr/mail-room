@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pdb
 import pytest
 
 
@@ -14,14 +13,19 @@ VAL_NAMES = [
     ('fred', 'fred'),
     ('phil', 'phil'),
     (878, False),
-    # ({'jared': [5, 445, 500]}),
-    # ({'alex': [1000, 2, 10]}),
 ]
 
 VAL_DON = [
     (333, 333),
     (356, 356),
     (234, 234),
+]
+
+
+FAKE_DONORS = [
+    ('jared', [323, 333, 3236], 'ran'),
+    ('alex', [45, 3345, 343, 234], 'ran'),
+    ('larry', [5, 5, 5, 5, 5, 5, 5], 'ran'),
 ]
 
 
@@ -46,14 +50,8 @@ def test_validate_donation(amount, result):
     assert validate_donation(amount) == result
 
 
-# TODO: write tests for the following:
-# test_append_to_dict(name, donation):
-
-# test_print_email(name, donation):
-# these first two can use the same testing MOCK DATA
-
-# test_report_math(key, donations):
-
-# test_create_report():
-
-# 
+@pytest.mark.parametrize('key, donations, result', FAKE_DONORS)
+def test_report_math(key, donations, result):
+    """Test if report is created from the donation list`."""
+    from mail_room import report_math
+    assert report_math(key, donations) == result

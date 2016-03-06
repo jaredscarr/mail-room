@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from builtins import input
-import pdb
 
 
 MENU_DICT = {
@@ -11,12 +10,7 @@ S) Send Thank You\nC) Create Report\n""",
     "name_prompt": "\nL) List of Names\nQ) Quit\nOr enter a name: ",
 }
 
-NAMES = {
-    # TODO: Remove the test values below
-    'jared': [323, 333, 3236],
-    'alex': [45, 3345, 343, 234],
-    'larry': [5, 5, 5, 5, 5, 5, 5],
-}
+NAMES = {}
 
 
 def main():
@@ -106,6 +100,7 @@ def report_math(key, donations):
     number_of = len(donations)
     avg = int(total / number_of)
     print("{:<20}{:<20}{:<20}{:<20}".format(key, total, number_of, avg))
+    return "ran"
 
 
 def create_report():
